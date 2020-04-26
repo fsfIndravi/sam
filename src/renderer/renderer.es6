@@ -1,5 +1,5 @@
 import {
-  tab48426,
+  sampledConsonantValues0,
   sampleTable,
   sinus
 } from './tables.es6';
@@ -199,7 +199,7 @@ export default function Renderer(phonemes, pitch, mouth, throat, speed, singmode
       }
       // unvoiced
       off = off ^ 255 & 0xFF; // unsigned char
-      let value0 = tab48426[kind] & 0xFF; // unsigned char
+      let value0 = sampledConsonantValues0[kind] & 0xFF; // unsigned char
       do {
         renderSample(2, 5, 1, value0)
       } while (++off & 0xFF);
