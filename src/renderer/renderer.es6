@@ -246,7 +246,7 @@ export default function Renderer(phonemes, pitch, mouth, throat, speed, singmode
           for (k=0; k<5; k++) {
             let /* signed char */ sp1 = char(sinus[0xff & (p1>>8)]);
             let /* signed char */ sp2 = char(sinus[0xff & (p2>>8)]);
-            let /* signed char */ rp3 = char(0xff & (((p3>>8)<129) ? 0x90 : 0x70));
+            let /* signed char */ rp3 = char(((0xff & (p3>>8))<129) ? 0x90 : 0x70);
             let /* signed int */ sin1 = sp1 * (/* (unsigned char) */ amplitude[0][pos] & 0x0F);
             let /* signed int */ sin2 = sp2 * (/* (unsigned char) */ amplitude[1][pos] & 0x0F);
             let /* signed int */ rect = rp3 * (/* (unsigned char) */ amplitude[2][pos] & 0x0F);
