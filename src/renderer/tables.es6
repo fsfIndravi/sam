@@ -257,10 +257,6 @@ export const ampldata = [
   0x00000F | 0x000000 | 0x100000
 ];
 
-export const sinus = Array.apply(null, Array(256)).map((n, i) =>
-  Math.sin(2*Math.PI*(i/256)) * 127 | 0
-);
-
 //random data ?
 export const sampleTable = [
   //00
