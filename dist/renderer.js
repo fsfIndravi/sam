@@ -514,7 +514,8 @@
   /** CREATE FRAMES
    *
    * The length parameter in the list corresponds to the number of frames
-   * to expand the phoneme to. Each frame represents 10 milliseconds of time.
+   * to expand the phoneme to. At the default speed, each frame represents
+   * about 10 milliseconds of time.
    * So a phoneme with a length of 7 = 7 frames = 70 milliseconds duration.
    *
    * The parameters are copied from the phoneme to the frame verbatim.
@@ -580,24 +581,12 @@
   function PrepareFrames(phonemes, pitch, mouth, throat, singmode) {
     var freqdata = SetMouthThroat(mouth, throat);
 
-    var srcpos  = 0; // Position in source
-    var tuples = [];
-    var A;
-    do {
-      A = phonemes[srcpos];
-      if (A[0]) {
-          tuples.push(A);
-      }
-      ++srcpos;
-    } while(srcpos < phonemes.length);
-
     /**
      * RENDER THE PHONEMES IN THE LIST
      *
      * The phoneme list is converted into sound through the steps:
      *
-     * 1. Copy each phoneme <length> number of times into the frames list,
-     *    where each frame represents 10 milliseconds of sound.
+     * 1. Copy each phoneme <length> number of times into the frames list.
      *
      * 2. Determine the transitions lengths between phonemes, and linearly
      *    interpolate the values across the frames.
@@ -609,7 +598,7 @@
 
       var ref = CreateFrames(
         pitch,
-        tuples,
+        phonemes,
         freqdata
       );
     var pitches = ref[0];
@@ -621,7 +610,7 @@
         pitches,
         frequency,
         amplitude,
-        tuples
+        phonemes
       );
 
       if (!singmode) {
